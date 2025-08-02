@@ -63,22 +63,12 @@ class EntityHighlight extends Plugin {
 
     start(): void {
         this.log('Started EntityHighlight Plugin');
+        this.updateEntityPriorities();
         this.setupAllElements();
     }
 
     stop(): void {
         this.log('Stopped EntityHighlight Plugin');
-        this.cleanupAllElements();
-    }
-
-    SocketManager_loggedIn(): void {
-        if (this.settings.enable.value) {
-            this.updateEntityPriorities();
-            this.setupAllElements();
-        }
-    }
-
-    SocketManager_handleLoggedOut(): void {
         this.cleanupAllElements();
     }
 
