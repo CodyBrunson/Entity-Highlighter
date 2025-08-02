@@ -375,7 +375,7 @@ class EntityHighlight extends Plugin {
     }
 
     private cleanupAllElements(): void {
-        this.log('Cleaning all elements');
+        //this.log('Cleaning all elements');
         this.cleanupElementCollection(this.EntityDOMElements);
 
         this.EntityDOMElements = {};
@@ -387,7 +387,7 @@ class EntityHighlight extends Plugin {
     }
 
     private setupAllElements(): void {
-        this.log('Starting setup');
+        //this.log('Starting setup');
         this.cleanupAllElements();
 
         // Use UIManager to create the container with ClientRelative scope
