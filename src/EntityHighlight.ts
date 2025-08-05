@@ -35,12 +35,6 @@ class EntityHighlight extends Plugin {
             max: 10,
             callback: () => {},
         };
-        this.settings.entityPriorities = {
-            text: 'Entities to highlight',
-            type: SettingsTypes.text,
-            value: '',
-            callback: () => this.updateEntityPriorities(),
-        };
 
     }
 
@@ -138,11 +132,10 @@ class EntityHighlight extends Plugin {
     }
 
     private updateEntityPriorities(): void {
-        const prioritiesStr = this.settings.entityPriorities!.value as string;
-        this.entitiesToHighlight = prioritiesStr
-            .split(',')
-            .map(entry => entry.trim())
-            .filter(entry => entry.length > 0);
+        if(!this.data.entitiesToHighlight) {
+            this.data.entitiesToHighlight = [];
+        }
+        this.entitiesToHighlight = this.data.entitiesToHighlight;
         this.setupAllElements();
     }
 
@@ -357,10 +350,12 @@ class EntityHighlight extends Plugin {
     private toggleEntityHighlight(entityName: string): void {
         if(this.entitiesToHighlight.indexOf(entityName) === -1) {
             this.entitiesToHighlight.push(entityName);
-            this.settings.entityPriorities.value = this.entitiesToHighlight.join(',');
+            this.data.entitiesToHighlight = this.entitiesToHighlight
+            this.settings.entityPriorities.value = this.entitiesToHighlight.join(','); //TODO: Remove this
         } else {
             let newPriorityList = this.entitiesToHighlight.filter(entity => entity !== entityName);
-            this.settings.entityPriorities.value = newPriorityList.join(',');
+            this.settings.entityPriorities.value = newPriorityList.join(','); //TODO: Remove this
+            this.data.entitiesToHighlight = this.newPriorityList;
         }
         this.updateEntityPriorities();
     }
