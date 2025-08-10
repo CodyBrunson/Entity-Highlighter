@@ -1,5 +1,5 @@
 import { Plugin, SettingsTypes, UIManagerScope, UIManager } from "@highlite/plugin-api";
-import { Vector3 } from "@babylonjs/core/Maths/math";
+import { Vector3 } from "@babylonjs/core/Maths/math.js";
 
 class EntityHighlight extends Plugin {
     pluginName = 'EntityHighlight';
