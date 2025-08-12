@@ -351,11 +351,9 @@ class EntityHighlight extends Plugin {
         if(this.entitiesToHighlight.indexOf(entityName) === -1) {
             this.entitiesToHighlight.push(entityName);
             this.data.entitiesToHighlight = this.entitiesToHighlight
-            this.settings.entityPriorities.value = this.entitiesToHighlight.join(','); //TODO: Remove this
         } else {
-            let newPriorityList = this.entitiesToHighlight.filter(entity => entity !== entityName);
-            this.settings.entityPriorities.value = newPriorityList.join(','); //TODO: Remove this
-            this.data.entitiesToHighlight = this.newPriorityList;
+            this.entitiesToHighlight = this.entitiesToHighlight.filter(entity => entity !== entityName);
+            this.data.entitiesToHighlight = this.entitiesToHighlight;
         }
         this.updateEntityPriorities();
     }
